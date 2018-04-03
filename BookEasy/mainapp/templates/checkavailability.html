@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <title>
+            Student Home, BookEasy
+        </title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <nav class="grey lighten-5">
+            <div class="nav-wrapper transparent" style="font-weight: 100;">
+                <span class="brand-logo center grey-text text-darken-4" style="font-size: 40px;">BOOK<b>EASY</b></span>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Home</a></li>
+                    <li><a href="/makebookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Make Booking</a></li>
+                    <li><a href="/viewbookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">View Bookings</a></li>
+                    <li><a href="/checkavailability/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Availability</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                       
+                    <li><a href="/logout/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <Br/>
+           <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                Check Availability :
+           </div>
+            <div class="row">
+                <form class="col s12" method="POST" action="/checkavailability/">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Date of Arrival" name="doa" id="doa" type="datetime-local" class="validate">
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Date of Departure" name="dod" id="dod" type="datetime-local" class="validate">
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Check  
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class = "col s12" style = "font-size: 25px; font-weight:300;">
+                    Technology Guesthouse
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Rooms Available</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td>AC Single</td>
+                        <td>{{ list1.ACS }}</td>
+                        <td>₹1000/day</td>
+                    </tr>
+                    <tr>
+                        <td>AC Double</td>
+                        <td>{{ list1.ACD }}</td>
+                        <td>₹1000/day</td>
+                    </tr>
+                    <tr>
+                        <td>Non AC Single</td>
+                        <td>{{ list1.NACS }}</td>
+                        <td>₹800/day</td>
+                    </tr>
+                    <tr>
+                        <td>Non AC Double</td>
+                        <td>{{ list1.NACD }}</td>
+                        <td>₹800/day</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <br/>
+            <div class = "col s12" style = "font-size: 25px; font-weight:300;">
+                Visveswarya Guesthouse
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Rooms Available</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>AC Single</td>
+                        <td>{{ list2.ACS }}</td>
+                        <td>₹1000/day</td>
+                    </tr>
+                    <tr>
+                        <td>AC Double</td>
+                        <td>{{ list2.ACD }}</td>
+                        <td>₹1000/day</td>
+                    </tr>
+                    <tr>
+                        <td>Non AC Single</td>
+                        <td>{{ list2.NACS }}</td>
+                        <td>₹800/day</td>
+                    </tr>
+                    <tr>
+                        <td>Non AC Double</td>
+                        <td>{{ list2.NACD }}</td>
+                        <td>₹800/day</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <br/>
+            <div class = "col s12" style = "font-size: 25px; font-weight:300;">
+                    Salt Lake Guesthouse
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Rooms Available</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>AC Single</td>
+                        <td>{{ list3.ACS }}</td>
+                        <td>₹1000/day</td>
+                    </tr>
+                    <tr>
+                        <td>AC Double</td>
+                        <td>{{ list3.ACD }}</td>
+                        <td>₹1000/day</td>
+                    </tr>
+                    <tr>
+                        <td>Non AC Single</td>
+                        <td>{{ list3.NACS }}</td>
+                        <td>₹800/day</td>
+                    </tr>
+                    <tr>
+                        <td>Non AC Double</td>
+                        <td>{{ list3.NACD }}</td>
+                        <td>₹800/day</td>
+                    </tr>
+                </tbody>
+            </table>         
+        </div>
+        <br/><br/>
+    </body>
+</html>     

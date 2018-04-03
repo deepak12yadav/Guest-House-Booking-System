@@ -1,0 +1,76 @@
+{% load static %}
+
+<html>
+    <style>
+        html { 
+  background: url({% static 'images/pic8.jpg' %}) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+    -o-background-size: cover;
+        background-size: cover;
+    }
+    </style>
+    <head>
+        <title>
+            Login, BookEasy
+        </title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 100px; font-weight:100">
+                    BOOK<b>EASY</b>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 30px; font-weight:100">
+                    ★★★★★ Guesthouse Booking System for <b> KGP </b>                </div>
+            </div>
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                    <b>Login</b>
+                </div>
+            </div>
+            {% if messages %}
+            <div class = "row">
+                {% for message in messages %}
+                <div class = "col s12" style = "font-size: 10px; font-weight:100;">
+                    <b>{{ message }}</b>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="row">
+                <form class="col s12" action='/login/' method='POST'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Email ID" name="emailid" type="text" class="validate">
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Password" name="password" type="password" class="validate">
+                        </div>
+                    </div>
+                    <button style="height:35px;width:200px" class="btn waves-effect waves-light grey darken-3" type="submit" name="action">Login
+                    </button>
+                </form>
+
+                 <div class = "col s12" style = "font-size: 20px; font-weight:100">
+                   <b> Not registered ? </b>
+                </div>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="/signup/" class="col s12" style="font-size: 20px; font-weight:100;"> <b> Create an account </b> </a></li>
+                </ul>
+                
+            </div>
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 15px; font-weight:100;">
+                    <a href = ''
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

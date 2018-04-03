@@ -1,0 +1,225 @@
+<html>
+    <head>
+        <title>
+            Book Your Stay, BookEasy
+        </title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
+      <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+      </script>
+      <script>
+        function  Add_Guests(){
+            var no_of_guests = document.getElementsByName("no_guests");
+            var ng = no_of_guests[0].value;
+            
+            for(var i=1;i<=ng;i++){
+                document.getElementById(i).style="display : block"
+            }
+        }
+      </script>
+    </head>
+    <body>
+        <nav class="grey lighten-5">
+            <div class="nav-wrapper transparent" style="font-weight: 100;">
+                <span class="brand-logo center grey-text text-darken-4" style="font-size: 40px;">BOOK<b>EASY</b></span>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Home</a></li>
+                    <li><a href="/makebookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Make Booking</a></li>
+                    <li><a href="/viewbookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">View Bookings</a></li>
+                    <li><a href="/checkavailability/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Availability</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/logout/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Logout</a></li>
+                </ul>
+            </div>
+        </nav>     
+        <br/><br/>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 100px; font-weight:100">
+                    Book your stay!
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                    
+                </div>
+            </div>
+            {% if messages %}
+            <div class="row">
+                {% for message in messages %}
+                <div class="col s6" style="font-size: 22px;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="row">
+                <form class="col s12" action='/makebookings/' method='POST'>
+                    {% csrf_token %}
+                    <div class="input-field col s12">
+                        <select name = 'guesthouse'>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="Technology Guest House">Technology Guest House</option>
+                          <option value="Visveswaraya Guest House">Visveswaraya Guest House</option>
+                          <option value="Salt Lake Guest House">Salt Lake Guest House</option>
+                        </select>
+                        <label>Guest House</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <select name = 'category'>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="C">C</option>
+                          <option value="D">D</option>
+                        </select>
+                        <label>Guest Category</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input placeholder="Purpose Of Visit" name="purpose" type="text" class="validate">
+                        <label>Purpose Of Visit</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <label>Date Of Arrival</label><br></br>
+                        <input type="datetime-local" name="doa">
+                    </div>
+                    <div class="input-field col s6">
+                        <label>Date Of Departure</label><br></br>
+                        <input type="datetime-local" name="dod">
+                    </div>
+                    <div class="input-field col s12">
+                        <select name = 'room_type'>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="ACS">AC Single</option>
+                          <option value="NACS">Non AC Single</option>
+                          <option value="ACD">AC Double</option>
+                          <option value="NACD">Non AC Double</option>
+                        </select>
+                        <label>Room Type</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="number" name="no_rooms" min="1">
+                        <label>No Of Rooms To Book</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="number" name="no_guests" min="1" max="5">
+                        <div class = "row">
+                            <button class = "btn waves-effect waves-teal" onclick="Add_Guests() " type="button">ENTER DETAILS</button>
+                        </div>
+                        <label>No Of Guests</label>
+                    </div>
+                    <div>
+                        <button class="btn waves-effect waves-light grey darken-3" type="submit" name="action">SUBMIT</button><br></br>
+                    </div>
+                    <div class="col s12" style="visibility: hidden; display:block;"  id='1' >
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">Guest Entry</span>
+                          <!-- <form class="container"> -->
+                            <div class = "row">
+                                <div class="input-field col s6">
+                                    <input placeholder="Email" name="guest1" type="text" class="validate">
+                                    <label>Email </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Name" name="name1" type="text" class="validate">
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                          <!-- </form> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12" style="visibility: hidden; display:block;" id='2' >
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">Guest Entry</span>
+                          <!-- <form class="container"> -->
+                            <div class = "row">
+                                <div class="input-field col s6">
+                                    <input placeholder="Email" name="guest2" type="text" class="validate">
+                                    <label>Email </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Name" name="name2" type="text" class="validate">
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                          <!-- </form> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12" style="visibility: hidden; display:block;" id='3' >
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">Guest Entry</span>
+                          <form class="container">
+                            <div class = "row">
+                                <div class="input-field col s6">
+                                    <input placeholder="Email" name="guest3" type="text" class="validate">
+                                    <label>Email </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Name" name="name3" type="text" class="validate">
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12" style="visibility: hidden; display:block;" id='4' >
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">Guest Entry</span>
+                          <!-- <form class="container"> -->
+                            <div class = "row">
+                                <div class="input-field col s6">
+                                    <input placeholder="Email" name="guest4" type="text" class="validate">
+                                    <label>Email </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Name" name="name4" type="text" class="validate">
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                          <!-- </form> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12" style="visibility: hidden; display:block;" id='5' >
+                      <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                          <span class="card-title">Guest Entry</span>
+                          <!-- <form class="container"> -->
+                            <div class = "row">
+                                <div class="input-field col s6">
+                                    <input placeholder="Email" name="guest5" type="text" class="validate">
+                                    <label>Email </label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input placeholder="Name" name="name5" type="text" class="validate">
+                                    <label>Name</label>
+                                </div>
+                            </div>
+                          <!-- </form> -->
+                        </div>
+                      </div>
+                    </div>
+                </form>
+            </div>
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 15px; font-weight:100;">
+                    <a href = ''
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

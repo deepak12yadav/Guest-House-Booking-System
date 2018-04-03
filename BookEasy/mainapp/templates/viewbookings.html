@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>
+            Student Home, BookEasy
+        </title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <nav class="grey lighten-5">
+            <div class="nav-wrapper transparent" style="font-weight: 100;">
+                <span class="brand-logo center grey-text text-darken-4" style="font-size: 40px;">BOOK<b>EASY</b></span>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Home</a></li>
+                    <li><a href="/makebookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Make Booking</a></li>
+                    <li><a href="/viewbookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">View Bookings</a></li>
+                    <li><a href="/checkavailability/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Availability</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/logout/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container">
+        {% if approve %}
+        <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                    Approved Bookings :
+                    </div
+            <div class="row">
+                {% for booking in approve %}
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Booking ID: {{ booking.id }}</span>
+                            <p>Booker ID   : {{ booking.booker.institute_id }}</p>
+                            <p>Booker Name : {{ booking.booker.name }}</p>
+                            <p>Purpose     : {{ booking.purpose }}</p>
+                    </div>
+                </div>
+                {% endfor %}            
+            </div>
+
+     
+        {% endif %}
+       
+        
+             {% if disapprove %}
+              <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                    Disapproved Bookings :
+                    </div
+             <div class="row">
+                {% for booking in disapprove %}
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Booking ID: {{ booking.booking_id.id }}</span>
+                            <p>Booker ID   : {{ booking.booking_id.booker.institute_id }}</p>
+                            <p>Booker Name : {{ booking.booking_id.booker.name }}</p>
+                            <p>Purpose     : {{ booking.booking_id.purpose }}</p>
+                            <p>Reason : {{booking.reason}} </p>
+                    </div>
+                </div>
+                {% endfor %}            
+            </div>
+
+     
+        {% endif %}
+       
+        
+            {% if pending %}
+             <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                    Pending Bookings :
+                    </div
+             <div class="row">
+                {% for booking in pending %}
+                <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Booking ID: {{ booking.id }}</span>
+                            <p>Booker ID   : {{ booking.booker.institute_id }}</p>
+                            <p>Booker Name : {{ booking.booker.name }}</p>
+                            <p>Purpose     : {{ booking.purpose }}</p>
+                    </div>
+                </div>
+                {% endfor %}            
+            </div>
+
+        {% endif %}
+        </div>
+    </body>
+</html>     

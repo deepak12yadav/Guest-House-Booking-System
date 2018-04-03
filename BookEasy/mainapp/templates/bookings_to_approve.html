@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>
+            Student Home, BookEasy
+        </title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <nav class="grey lighten-5">
+            <div class="nav-wrapper transparent" style="font-weight: 100;">
+                <span class="brand-logo center grey-text text-darken-4" style="font-size: 40px;">BOOK<b>EASY</b></span>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Home</a></li>
+                    <li><a href="/makebookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Make Booking</a></li>
+                    <li><a href="/viewbookings/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">View Bookings</a></li>
+                    <li><a href="/checkavailability/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Availability</a></li>
+                </ul>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                       
+                    <li><a href="/logout/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% if list %}
+        <div class="container">
+           <div class = "col s12" style = "font-size: 50px; font-weight:100">
+                    Approval Requests :
+           </div>
+            <div class="row">
+                {% for booking in list %}
+                <div class="col s12">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <div class="col s6">
+                            <span class="card-title">Booking ID: {{ booking.id }}</span>
+                            <p>Booker ID: {{ booking.booker.institute_id }}</p>
+                            <p>Booker Name: {{ booking.booker.name }}</p>
+                            <p>Purpose: {{ booking.purpose }}</p>
+                            </div>
+                            <form action="/disapprove/" method="POST">
+                                {% csrf_token %}
+                                    <input type="hidden" value="{{ booking.id }}" name="id">
+                                    <div class="input-field col s3">
+                                        <input placeholder="Reason" name="reason" type="text" class="validate">
+                                    </div> 
+                                    <br/>
+                                    <button style="height:35px;width:200px" class="offset-s6 btn waves-effect waves-light grey darken-3" type="submit" name="action" >Disapprove
+                                    </button>   
+                            </form>
+                            <form action="/approve/" method="POST">
+                            {% csrf_token %}
+                                <input type="hidden" value="{{ booking.id }}" name="id" >   
+                                <button style="height:35px;width:200px" class="offset-s6 btn waves-effect waves-light grey darken-3" type="submit" name="action" >Approve
+                                </button>
+                                
+                            </form>
+                    </div>
+                </div>
+                {% endfor %}            
+            </div>
+        </div>
+        {% else %}
+        <div class = "container">
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 100px; font-weight:100">
+                    No bookings to display!
+                </div>
+            </div>
+        </div> 
+        {% endif %}
+    </body>
+</html>     

@@ -1,0 +1,61 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>
+            Signup, BookEasy
+        </title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </head>
+    <body background = "{% static 'images/pic8.jpg' %}" background-size: cover;>
+        <nav class="grey lighten-5">
+            <div class="nav-wrapper transparent" style="font-weight: 100;">
+                <span class="brand-logo center grey-text text-darken-4" style="font-size: 40px;">BOOK<b>EASY</b></span>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="/" class="grey-text text-darken-4" style="font-size: 20px; font-weight:100;">Home</a></li>
+                </ul>
+            </div>
+        </nav>     
+        <br/><br/>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col s12" style = "font-size: 60px; font-weight:100">
+                    SIGN<b>UP</b>
+                </div>
+            </div>
+            {% if messages %}
+            <div class = "row">
+                {% for message in messages %}
+                <div class = "col s12" style = "font-size: 10px; font-weight:100;">
+                    <b>{{ message }}</b>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="row">
+                <form class="col s12" action='/signup/' method='POST'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Email ID" name="emailid" type="text" class="validate">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Password" name="pass1" type="password" class="validate">
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="Retype Password" name="pass2" type="password" class="validate">
+                            </div>
+                        </div>
+                    <button class="btn waves-effect waves-light grey darken-3" type="submit" name="action">Signup
+                    </button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
